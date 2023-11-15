@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Animated Text</title>
+    <style>
+        @font-face {
+            font-family: Oddval Variable;
+            src: url("https://garet.typeforward.com/assets/fonts/campaigns/OddvalVariable-VariableVF.woff2");
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #4801b4;
+            text-align: center;
+            line-height: 90%;
+            font-variation-settings: "wght" 900, "ital" 1;
+            font-family: Oddval Variable;
+            color: #ff78d2;
+            white-space: nowrap;
+        }
+
+        .content-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .text-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1vh; /* Adicionado espaçamento entre as linhas */
+            perspective: 1000px; /* Adicionada perspectiva para a animação 3D */
+            @for $line from 1 through 3 { /* Três linhas no exemplo */
+                &:nth-child(#{$line}) {
+                    @for $letter from 1 through 15 { /* Ajustado para "Ferreira delivery" */
+                        span:nth-child(#{$letter}) {
+                            animation-delay: #{$letter * 0.1s + $line * 0.2s};
+                        }
+                    }
+                }
+            }
+        }
+
+        div span {
+            display: inline-block;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-name: rotateAndChange;
+            transition-timing-function: ease-in-out;
+            -webkit-animation-duration: 3s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-name: rotateAndChange;
+            -webkit-transition-timing-function: ease-in-out;
+            font-size: 8vw; /* Tamanho ajustado para celular */
+            transform-origin: center; /* Define o ponto de origem da transformação 3D */
+        }
+
+        .loading-container {
+            position: absolute;
+            text-align: center;
+            font-size: 200px;
+            color: #fff;
+            bottom: -20vh; /* Espaçamento inferior ajustado */
+            width: 100%;
+        }
+
+        .loading-container span {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .spinner {
+            border: 8px solid #fff;
+            border-top: 8px solid #4801b4;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes rotateAndChange {
+            0%, 100% {
+                font-variation-settings: "wght" 900, "ital" 1;
+                transform: rotateY(0deg); /* Rotação inicial */
+            }
+
+            50% {
+                font-variation-settings: "wght" 100, "ital" 0;
+                transform: rotateY(180deg); /* Rotação durante a animação */
+            }
+        }
+
+        @-webkit-keyframes rotateAndChange {
+            0%, 100% {
+                font-variation-settings: "wght" 900, "ital" 1;
+                -webkit-transform: rotateY(0deg); /* Rotação inicial */
+            }
+
+            50% {
+                font-variation-settings: "wght" 100, "ital" 0;
+                -webkit-transform: rotateY(180deg); /* Rotação durante a animação */
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        <!-- logo -->
+        </style>
+    <h1>BEM VINDO</h1>
+    <h1>Faça já seu pedido!</h1>
+    
+</head>
+<body>
+    <div class="content-container">
+        <div class="text-line">
+            <span>F</span><span>e</span><span>r</span><span>r</span><span>e</span><span>i</span><span>r</span><span>a</span><span>&nbsp;</span>
+            <span>d</span><span>e</span><span>l</span><span>i</span><span>v</span><span>e</span><span>r</span><span>y</span>
+        </div>
+        <div class="text-line">
+            <span>F</span><span>e</span><span>r</span><span>r</span><span>e</span><span>i</span><span>r</span><span>a</span><span>&nbsp;</span>
+            <span>d</span><span>e</span><span>l</span><span>i</span><span>v</span><span>e</span><span>r</span><span>y</span>
+        </div>
+        <div class="text-line">
+            <span>F</span><span>e</span><span>r</span><span>r</span><span>e</span><span>i</span><span>r</span><span>a</span><span>&nbsp;</span>
+            <span>D</span><span>e</span><span>l</span><span>i</span><span>v</span><span>e</span><span>r</span><span>y</span>
+        </div>
+
+        <div class="loading-container">
+            <span class="spinner"></span>
+            <span></span>
+        </div>
+    </div>
+
+    <script>
+        function redirectAfter2Seconds() {
+            setTimeout(function() {
+                window.location.href = "inicio.html";
+            }, 4000);
+        }
+
+        redirectAfter2Seconds();
+    </script>
+</body>
+</html>
